@@ -4,6 +4,6 @@ export async function indexCategories() {
   return await apiFetch(`/categories`);
 }
 
-export async function showCategories(CategoryId) {
+export async function showCategory(CategoryId) {
   return await apiFetch(`/categories/${CategoryId}`);
 }
