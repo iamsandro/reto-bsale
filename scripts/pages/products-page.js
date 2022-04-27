@@ -1,6 +1,8 @@
 import { showCategory } from "../services/categories-service.js";
 import { fromLocalStorage, saveToLocalStorage } from "../utils.js";
 import DOMHandler from "../dom-handler.js";
+import { input } from "../components/inputs.js";
+import { searchProducts } from "../services/products-service.js";
 
 function listCategories(category) {
   const categorySelected = fromLocalStorage("category selected");
@@ -21,6 +23,14 @@ function aside() {
       </ul>
     </nav>
   `;
+}
+
+function header() {
+  return `
+  <div>
+    ${input({ name: "search", placeholder: "Buscar", classInput: "js-search" })}
+  </div>
+`;
 }
 
 function renderProducts(product) {
@@ -49,6 +59,8 @@ function renderProducts(product) {
 function render() {
   let products = fromLocalStorage("products");
   return `
+  <>
+  ${header()}
   <div class="container">
   ${aside()}
     <div class="cards__container">
@@ -56,10 +68,32 @@ function render() {
       ${products.map(renderProducts)}
     </div>
   </div>
+  <>
   `;
 }
 
-function eventChangeCategory(params) {
+function addEventOnSearch() {
+  const inputSearch = document.querySelector(".js-search");
+  inputSearch.addEventListener("change", async (event) => {
+    console.log(
+      "%c 🦉: addEventOnSearch -> event ",
+      "font-size:16px;background-color:#42edb9;color:black;",
+      event.target.value
+    );
+    const products = await searchProducts(event.target.value);
+    console.log(
+      "%c 🖋️: addEventOnSearch -> products ",
+      "font-size:16px;background-color:#7e2800;color:white;",
+      products
+    );
+
+    saveToLocalStorage("products", products);
+    saveToLocalStorage("category selected", null);
+    DOMHandler.reload();
+  });
+}
+
+function addEventChangeCategory() {
   const categoriesList = document.querySelectorAll(".js-category");
   categoriesList.forEach((category) => {
     category.addEventListener("click", async (event) => {
@@ -79,7 +113,8 @@ function ProductsPage() {
       return render();
     },
     addListeners() {
-      eventChangeCategory();
+      addEventChangeCategory();
+      addEventOnSearch();
     },
     state: {
       errors: {},
