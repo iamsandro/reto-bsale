@@ -1,0 +1,11 @@
+.list-categories {
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+.selected {
+  background-color: gray;
+  color: white;
+}

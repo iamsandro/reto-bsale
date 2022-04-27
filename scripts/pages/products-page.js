@@ -1,11 +1,10 @@
 import { showCategory } from "../services/categories-service.js";
-import { fromLocalStorage, saveToLocalStorage } from "../utils.js";
+import { getItFromLocalStorage, saveToLocalStorage } from "../utils.js";
 import DOMHandler from "../dom-handler.js";
-import { input } from "../components/inputs.js";
 import { searchProducts } from "../services/products-service.js";
 
 function listCategories(category) {
-  const categorySelected = fromLocalStorage("category selected");
+  const categorySelected = getItFromLocalStorage("category selected");
   return `
     <li class="js-category
       list-categories
@@ -15,7 +14,7 @@ function listCategories(category) {
 }
 
 function aside() {
-  let categories = fromLocalStorage("categories");
+  let categories = getItFromLocalStorage("categories");
   return `
     <nav>
       <ul>
@@ -27,13 +26,15 @@ function aside() {
 
 function header() {
   return `
-  <div>
-    ${input({ name: "search", placeholder: "Buscar", classInput: "js-search" })}
+  <div class="header">
+    <p class="logo" >BSALE TEST MF</p>
+    <input name="search" placeholder="Buscar" class="js-search input"></input>
   </div>
 `;
 }
 
-function renderProducts(product) {
+function renderCardProducts(product) {
+  const ProductInTheCart = getItFromLocalStorage("Products in the cart");
   return `
     <div class="card">
       <image 
@@ -46,10 +47,20 @@ function renderProducts(product) {
           <p class="card__price">$ ${product["price"] / 100}</p>
           ${
             product["discount"] > 0
-              ? `<p class="card__discount">-$ ${product["discount"] / 100}</p>`
+              ? `<p class="card__discount">Discount:<br>-$ ${
+                  product["discount"] / 100
+                }</p>`
               : ""
           }
-          <image class="card__icon" src="./assets/icons/cart-plus.svg"/>
+          <image 
+          data-id=${product["id"]}
+          class="card__icon js-cart" 
+          src=${
+            ProductInTheCart?.includes(product["id"])
+              ? "./assets/icons/cart-down.svg"
+              : "./assets/icons/cart-plus.svg"
+          }
+          />
         </div>
       </div>
     </div>
@@ -57,36 +68,37 @@ function renderProducts(product) {
 }
 
 function render() {
-  let products = fromLocalStorage("products");
+  let products = getItFromLocalStorage("products");
   return `
-  <>
   ${header()}
   <div class="container">
   ${aside()}
     <div class="cards__container">
-      <h1>Esta es la pagína de products</h1>
-      ${products.map(renderProducts)}
+      ${products.map(renderCardProducts)}
     </div>
   </div>
-  <>
   `;
+}
+
+function addEventAddProductToCart() {
+  const iconsCart = document.querySelectorAll(".js-cart");
+  iconsCart.forEach((iconCart) => {
+    iconCart.addEventListener("click", (event) => {
+      const productId = event.target.dataset.id;
+      let products = getItFromLocalStorage("Products in the cart") || [];
+      products.includes(+productId)
+        ? products.splice(products.indexOf(+productId), 1)
+        : products.push(+productId);
+      saveToLocalStorage("Products in the cart", products);
+      DOMHandler.reload();
+    });
+  });
 }
 
 function addEventOnSearch() {
   const inputSearch = document.querySelector(".js-search");
   inputSearch.addEventListener("change", async (event) => {
-    console.log(
-      "%c 🦉: addEventOnSearch -> event ",
-      "font-size:16px;background-color:#42edb9;color:black;",
-      event.target.value
-    );
     const products = await searchProducts(event.target.value);
-    console.log(
-      "%c 🖋️: addEventOnSearch -> products ",
-      "font-size:16px;background-color:#7e2800;color:white;",
-      products
-    );
-
     saveToLocalStorage("products", products);
     saveToLocalStorage("category selected", null);
     DOMHandler.reload();
@@ -109,12 +121,12 @@ function addEventChangeCategory() {
 function ProductsPage() {
   return {
     toString() {
-      // return render.call(this);
       return render();
     },
     addListeners() {
       addEventChangeCategory();
       addEventOnSearch();
+      addEventAddProductToCart();
     },
     state: {
       errors: {},

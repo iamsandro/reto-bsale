@@ -1,7 +1,7 @@
 // import { appKey } from "./config.js";
 let appKey = "bsale_test";
 
-export function fromLocalStorage(key) {
+export function getItFromLocalStorage(key) {
   const data = JSON.parse(localStorage.getItem(appKey)) || {};
   return data[key];
 }
