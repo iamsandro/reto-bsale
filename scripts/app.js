@@ -1,25 +1,43 @@
 import DOMHandler from "./dom-handler.js";
 import ProductsPage from "./pages/products-page.js";
-import { indexCategories } from "./services/categories-service.js";
-import { indexProducts } from "./services/products-service.js";
+import {
+  indexProducts,
+  showCategories,
+  clasificationTypes,
+} from "./services/products-service.js";
 import { getItFromLocalStorage, saveToLocalStorage } from "./utils.js";
-
-const root = document.querySelector("#root");
 
 let module;
 async function App() {
+  const root = document.querySelector("#root");
   try {
     const productsInLocalStorage = getItFromLocalStorage("products");
+    const categoriesInLocalStorage = getItFromLocalStorage("categories");
+    const clasificationTypesInLocalStorage = getItFromLocalStorage(
+      "clasification types"
+    );
     const products = productsInLocalStorage
       ? productsInLocalStorage
       : await indexProducts();
-    const categories = await indexCategories();
+
+    const categories = categoriesInLocalStorage
+      ? categoriesInLocalStorage
+      : await showCategories();
+
+    const clasification = clasificationTypesInLocalStorage
+      ? clasificationTypesInLocalStorage
+      : await clasificationTypes();
+    console.log("🤣", clasification);
+
     saveToLocalStorage("products", products);
     saveToLocalStorage("categories", categories);
+    saveToLocalStorage("clasification types", clasification);
     module = ProductsPage;
   } catch (error) {
     console.log(error);
-    // module = PageDon'tfound;
+    module = () => {
+      return `<di>NO hay products</div>`;
+    };
   }
 
   return DOMHandler.load(module(), root);

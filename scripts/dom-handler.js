@@ -4,6 +4,7 @@ const DOMHandler = {
   load(module, parent) {
     this.module = module;
     this.parent = parent;
+
     parent.innerHTML = module; //toString()
     module.addListeners();
   },

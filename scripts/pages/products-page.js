@@ -5,6 +5,8 @@ import { productCards } from "../components/product-cards.js";
 import { addEventChangeCategory } from "../events/asides-events.js";
 import { addEventOnSearch } from "../events/search-tool-events.js";
 import { addEventAddProductToCart } from "../events/cards-events.js";
+import { inputSelect } from "../components/input-select-order.js";
+import { addEventSelectSort } from "../events/inputSelect-event.js";
 
 function render() {
   const products = getItFromLocalStorage("products");
@@ -13,6 +15,7 @@ function render() {
   <div class="container">
   ${aside()}
     <div class="cards__container">
+      ${inputSelect()}
       ${products.map(productCards)}
     </div>
   </div>
@@ -28,6 +31,7 @@ function ProductsPage() {
       addEventChangeCategory();
       addEventOnSearch();
       addEventAddProductToCart();
+      addEventSelectSort();
     },
     state: {
       errors: {},
