@@ -10,6 +10,8 @@ export function addEventChangeCategory() {
       const products = await showProductsByCategory(categoryId);
       saveToLocalStorage("products", products);
       saveToLocalStorage("category selected", categoryId);
+      saveToLocalStorage("product to search", null);
+      saveToLocalStorage("sort selected", null);
       DOMHandler.reload();
     });
   });

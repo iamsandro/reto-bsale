@@ -27,11 +27,11 @@ async function App() {
     const clasification = clasificationTypesInLocalStorage
       ? clasificationTypesInLocalStorage
       : await clasificationTypes();
-    console.log("🤣", clasification);
 
     saveToLocalStorage("products", products);
     saveToLocalStorage("categories", categories);
     saveToLocalStorage("clasification types", clasification);
+
     module = ProductsPage;
   } catch (error) {
     console.log(error);

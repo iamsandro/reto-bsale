@@ -1,22 +1,29 @@
 import { getItFromLocalStorage } from "../utils.js";
-import { aside } from "../components/aside.js";
-import { searchTool } from "../components/tool-search.js";
+import { aside } from "../components/aside-categories.js";
+import { searchTool } from "../components/input-search.js";
 import { productCards } from "../components/product-cards.js";
-import { addEventChangeCategory } from "../events/asides-events.js";
-import { addEventOnSearch } from "../events/search-tool-events.js";
-import { addEventAddProductToCart } from "../events/cards-events.js";
-import { inputSelect } from "../components/input-select-order.js";
-import { addEventSelectSort } from "../events/inputSelect-event.js";
+import { addEventChangeCategory } from "../events/aside-events.js";
+import {
+  addEventGoToCartPage,
+  addEventOnSearch,
+} from "../events/search-events.js";
+import { addEventAddProductToCart } from "../events/product-events.js";
+import { inputSelect } from "../components/input-sort.js";
+import { addEventSelectSort } from "../events/sort-events.js";
 
 function render() {
   const products = getItFromLocalStorage("products");
+  location.replace("https://business.tutsplus.com");
+  console.log("😊", location.href);
   return `
   ${searchTool()}
   <div class="container">
-  ${aside()}
-    <div class="cards__container">
+    ${aside()}
+    <div>
       ${inputSelect()}
-      ${products.map(productCards)}
+      <div class="cards__container">
+        ${products.map(productCards)}
+      </div>
     </div>
   </div>
   `;
@@ -32,6 +39,7 @@ function ProductsPage() {
       addEventOnSearch();
       addEventAddProductToCart();
       addEventSelectSort();
+      addEventGoToCartPage();
     },
     state: {
       errors: {},
