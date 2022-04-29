@@ -5,3 +5,8 @@
   color: white;
   /* max-width: 50rem; */
 }
+
+.input-selected {
+  text-transform: capitalize;
+  margin: 1rem 1rem;
+}

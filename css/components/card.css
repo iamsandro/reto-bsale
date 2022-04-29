@@ -1,16 +1,19 @@
-.container {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-}
-
 .cards__container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 2rem;
+  overflow-y: scroll;
+  height: calc(100vh - 5.625rem);
 }
 
-.card {
+.cards__container::-webkit-scrollbar {
+  display: none;
+}
+
+.card,
+.card-sale {
   width: 300px;
   box-shadow: 2px 2px 10px 3px var(--gray-100);
   border-radius: 20px;
@@ -37,7 +40,8 @@
   padding-bottom: 20px;
 }
 
-.card__name {
+.card__name,
+.card-sale__title {
   color: var(--gray-300);
   font-weight: bold;
   text-transform: uppercase;
@@ -65,4 +69,21 @@
 
 .card__icon:hover {
   transform: scale(1.1, 1.1);
+}
+
+.card-sale {
+  gap: 1rem;
+  width: 100%;
+}
+
+.card-sale__name {
+  text-transform: lowercase;
+}
+
+.card-sale__lists {
+  align-self: flex-start;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

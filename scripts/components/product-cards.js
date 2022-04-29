@@ -5,7 +5,11 @@ export function productCards(product) {
   return `
     <div class="card">
       <image 
-        src=${product["url_image"]}
+        src=${
+          product["url_image"]
+            ? product["url_image"]
+            : "https://upload.wikimedia.org/wikipedia/commons/d/da/Imagen_no_disponible.svg"
+        }
         alt="product's image" class="card__image" />
 
       <div class="card__description">

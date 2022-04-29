@@ -6,15 +6,13 @@ import { addEventChangeCategory } from "../events/aside-events.js";
 import {
   addEventGoToCartPage,
   addEventOnSearch,
-} from "../events/search-events.js";
+} from "../events/header-events.js";
 import { addEventAddProductToCart } from "../events/product-events.js";
 import { inputSelect } from "../components/input-sort.js";
 import { addEventSelectSort } from "../events/sort-events.js";
 
 function render() {
   const products = getItFromLocalStorage("products");
-  location.replace("https://business.tutsplus.com");
-  console.log("😊", location.href);
   return `
   ${searchTool()}
   <div class="container">
@@ -22,7 +20,11 @@ function render() {
     <div>
       ${inputSelect()}
       <div class="cards__container">
-        ${products.map(productCards)}
+        ${
+          products.length > 0
+            ? products.map(productCards)
+            : "<h1>Sorry! We don't have this product 😣</h1>"
+        }
       </div>
     </div>
   </div>

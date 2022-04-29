@@ -1,2 +1,8 @@
 @import url("./global/reset.css");
 @import url("./global/colors.css");
+
+.container {
+  /* margin-top: 5rem; */
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}

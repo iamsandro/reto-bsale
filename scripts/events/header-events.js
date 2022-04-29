@@ -2,6 +2,7 @@ import DOMHandler from "../dom-handler.js";
 import { searchProducts } from "../services/products-service.js";
 import { getItFromLocalStorage, saveToLocalStorage } from "../utils.js";
 import CartPage from "../pages/cart-page.js";
+import ProductsPage from "../pages/products-page.js";
 
 export function addEventOnSearch() {
   const inputSearch = document.querySelector(".js-search");
@@ -31,7 +32,31 @@ export function addEventGoToCartPage() {
       return productIds.includes(product["id"]);
     });
 
+    let totalToPay = 0;
+    let disscount = 0;
+    const productDescription = [
+      ...productsToSeil.map((product) => {
+        totalToPay += product["price"];
+        disscount += product["discount"];
+        return { name: product["name"], price: product["price"] };
+      }),
+    ];
+
+    saveToLocalStorage("sale description", [
+      productDescription,
+      totalToPay,
+      disscount,
+    ]);
     saveToLocalStorage("Products to seil", productsToSeil);
     DOMHandler.load(CartPage(), root);
+  });
+}
+
+export function addEventBackToProductPage() {
+  const root = document.querySelector("#root");
+  const iconBack = document.querySelector(".js-back");
+
+  iconBack.addEventListener("click", () => {
+    DOMHandler.load(ProductsPage(), root);
   });
 }
