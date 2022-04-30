@@ -4,7 +4,6 @@ import { getItFromLocalStorage } from "../utils.js";
 import { saleCard } from "../components/sale-card.js";
 import { addEventDeleteProductToCart } from "../events/product-events.js";
 import { addEventButtonToPay } from "../events/sale-event.js";
-import { cartFull, cartEmpty } from "../links.js";
 import { message } from "../components/message-sale-page.js";
 
 function render() {
