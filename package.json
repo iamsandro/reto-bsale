@@ -1,0 +1,23 @@
+{
+  "name": "test-bsale-mf",
+  "version": "1.0.0",
+  "description": "reto tecnico bsale(frontent)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rubencito9294/reto-bsale.git"
+  },
+  "author": "Ruben Sandro Santillán",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rubencito9294/reto-bsale/issues"
+  },
+  "homepage": "https://github.com/rubencito9294/reto-bsale#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
