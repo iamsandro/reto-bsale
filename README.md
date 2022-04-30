@@ -56,3 +56,11 @@ Cuando damos click en el icono cart que te lleva a la vista sale, y no se ha sel
 Y cuando la app no pudo conectarse a la api, debe aparecer lo siguiente:
 
 ![Image text](assets/icons/image-to-readme/no-service.JPG)
+
+## Deployment
+
+La aplicación se deployó en heroku: `https://bsale-app-test.herokuapp.com/`
+
+![Image text](assets/icons/image-to-readme/bsale-app-test-deploy.JPG)
+
+- Nota: para poder deployar, se tuvo que hacer uso de node.
