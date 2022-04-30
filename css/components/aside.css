@@ -1,8 +1,13 @@
 .list-categories {
   text-transform: uppercase;
   cursor: pointer;
-  margin-bottom: 1rem;
-  padding-left: 1rem;
+  /* padding-bottom: 1rem; */
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+
+.list-categories:hover {
+  background-color: var(--gray-200);
 }
 
 .selected {

@@ -1,0 +1,13 @@
+.message__cart {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.message__content {
+  color: var(--primary-300);
+  text-align: center;
+  padding-top: 2rem;
+}

@@ -18,7 +18,7 @@ function render() {
   <div class="container">
     ${aside()}
     <div>
-      ${inputSelect()}
+      ${products[0] ? inputSelect() : ""}
       <div class="cards__container">
         ${
           products.length > 0
@@ -42,9 +42,6 @@ function ProductsPage() {
       addEventAddProductToCart();
       addEventSelectSort();
       addEventGoToCartPage();
-    },
-    state: {
-      errors: {},
     },
   };
 }

@@ -6,6 +6,7 @@ import {
   clasificationTypes,
 } from "./services/products-service.js";
 import { getItFromLocalStorage, saveToLocalStorage } from "./utils.js";
+import ErrorPage from "./pages/error-page.js";
 
 let module;
 async function App() {
@@ -29,15 +30,16 @@ async function App() {
       : await clasificationTypes();
 
     saveToLocalStorage("products", products);
+    saveToLocalStorage("All products", products);
     saveToLocalStorage("categories", categories);
     saveToLocalStorage("clasification types", clasification);
+    saveToLocalStorage("sale completed", false);
+    saveToLocalStorage("category selected", "allProduct");
 
     module = ProductsPage;
   } catch (error) {
     console.log(error);
-    module = () => {
-      return `<di>NO hay products</div>`;
-    };
+    module = ErrorPage;
   }
 
   return DOMHandler.load(module(), root);

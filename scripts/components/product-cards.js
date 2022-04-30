@@ -1,7 +1,7 @@
 import { getItFromLocalStorage } from "../utils.js";
 
 export function productCards(product) {
-  const ProductInTheCart = getItFromLocalStorage("Products in the cart");
+  const ProductInTheCart = getItFromLocalStorage("IDs of cart's products");
   return `
     <div class="card">
       <image 

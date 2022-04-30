@@ -27,7 +27,9 @@ export async function sortAllProducts(sortBy, sortSequence) {
 }
 
 export async function sortProductsByCategory(ProductID, SortBy, SortSequence) {
-  return await apiFetch(`products/${ProductID}/${SortBy}/${SortSequence}`);
+  return await apiFetch(
+    `products/category/${ProductID}/${SortBy}/${SortSequence}`
+  );
 }
 
 export async function clasificationTypes() {

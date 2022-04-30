@@ -72,6 +72,7 @@
 }
 
 .card-sale {
+  margin-top: 2rem;
   gap: 1rem;
   width: 100%;
 }
@@ -79,11 +80,25 @@
 .card-sale__name {
   text-transform: lowercase;
 }
-
+.card-sale__disscount {
+  color: red;
+}
+.card-sale__total {
+  color: green;
+}
 .card-sale__lists {
   align-self: flex-start;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.button {
+  cursor: pointer;
+  background-color: var(--primary-300);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 }

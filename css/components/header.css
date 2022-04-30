@@ -7,8 +7,8 @@
   gap: 4rem;
   background-color: #363a40;
   width: 100%;
-  /* position: fixed; */
-  /* top: 0; */
+  position: fixed;
+  top: 0;
 }
 
 .app-name,

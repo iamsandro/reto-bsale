@@ -10,15 +10,16 @@ export function addEventSelectSort() {
   const input = document.querySelector(".js-sort");
   const searching = getItFromLocalStorage("product to search");
 
-  input.addEventListener("change", async (event) => {
+  input?.addEventListener("change", async (event) => {
     const optionSelected = event.target.value;
     const [sortBy, order, categoryId] = optionSelected.split(" ");
     let products;
 
     if (searching == null) {
-      products = categoryId
-        ? await sortProductsByCategory(categoryId, sortBy, order)
-        : await sortAllProducts(sortBy, order);
+      products =
+        categoryId && categoryId !== "allProduct"
+          ? await sortProductsByCategory(categoryId, sortBy, order)
+          : await sortAllProducts(sortBy, order);
       saveToLocalStorage("products", products);
     } else {
       products = await searchProducts(searching, sortBy, order);

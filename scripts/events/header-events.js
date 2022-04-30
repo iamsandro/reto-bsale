@@ -1,7 +1,7 @@
 import DOMHandler from "../dom-handler.js";
 import { searchProducts } from "../services/products-service.js";
 import { getItFromLocalStorage, saveToLocalStorage } from "../utils.js";
-import CartPage from "../pages/cart-page.js";
+import CartPage from "../pages/sale-page.js";
 import ProductsPage from "../pages/products-page.js";
 
 export function addEventOnSearch() {
@@ -25,19 +25,19 @@ export function addEventGoToCartPage() {
   const root = document.querySelector("#root");
 
   iconCart.addEventListener("click", () => {
-    const productIds = getItFromLocalStorage("Products in the cart");
-    let products = getItFromLocalStorage("products");
+    const productIds = getItFromLocalStorage("IDs of cart's products");
+    let products = getItFromLocalStorage("All products");
 
     let productsToSeil = products.filter((product) => {
-      return productIds.includes(product["id"]);
+      return productIds?.includes(product["id"]);
     });
 
     let totalToPay = 0;
-    let disscount = 0;
+    let discount = 0;
     const productDescription = [
       ...productsToSeil.map((product) => {
         totalToPay += product["price"];
-        disscount += product["discount"];
+        discount += product["discount"];
         return { name: product["name"], price: product["price"] };
       }),
     ];
@@ -45,7 +45,7 @@ export function addEventGoToCartPage() {
     saveToLocalStorage("sale description", [
       productDescription,
       totalToPay,
-      disscount,
+      discount,
     ]);
     saveToLocalStorage("Products to seil", productsToSeil);
     DOMHandler.load(CartPage(), root);
@@ -55,6 +55,8 @@ export function addEventGoToCartPage() {
 export function addEventBackToProductPage() {
   const root = document.querySelector("#root");
   const iconBack = document.querySelector(".js-back");
+
+  saveToLocalStorage("sale completed", false);
 
   iconBack.addEventListener("click", () => {
     DOMHandler.load(ProductsPage(), root);
