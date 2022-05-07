@@ -3,10 +3,11 @@
   background-color: #4a4e53;
   outline: none;
   color: white;
-  /* max-width: 50rem; */
 }
 
 .input-selected {
   text-transform: capitalize;
   margin: 1rem 1rem;
+  margin-right: 300px;
+  position: fixed;
 }

@@ -17,12 +17,12 @@ function render() {
   ${searchTool()}
   <div class="container">
     ${aside()}
-    <div>
+    <div class="div__main">
       ${products[0] ? inputSelect() : ""}
       <div class="cards__container">
         ${
           products.length > 0
-            ? products.map(productCards)
+            ? products.map(productCards).join("")
             : "<h1>Sorry! We don't have this product 😣</h1>"
         }
       </div>

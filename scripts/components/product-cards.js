@@ -15,11 +15,14 @@ export function productCards(product) {
       <div class="card__description">
         <p class="card__name">${product["name"]}</p>
         <div class="card__footer">
-          <p class="card__price">$ ${product["price"] / 100}</p>
+          <p class="card__price ${
+            product["discount"] > 0 ? "crossed-out" : ""
+          }">$ ${product["price"] / 100}</p>
+          
           ${
             product["discount"] > 0
-              ? `<p class="card__discount">Discount:<br>-$ ${
-                  product["discount"] / 100
+              ? `<p class="card__discount">Get it for:<br>$ ${
+                  (product["price"] * (100 - product["discount"])) / 10000
                 }</p>`
               : ""
           }

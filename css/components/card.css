@@ -1,15 +1,16 @@
+.div__main {
+  margin-left: 220px;
+  width: 100%;
+  margin-bottom: 30px;
+}
 .cards__container {
+  padding-top: 150px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 2rem;
-  overflow-y: scroll;
   height: calc(100vh - 5.625rem);
-}
-
-.cards__container::-webkit-scrollbar {
-  display: none;
 }
 
 .card,

@@ -16,7 +16,7 @@ export function aside() {
   const categorySelected = getItFromLocalStorage("category selected");
   let categories = getItFromLocalStorage("categories");
   return `
-    <nav>
+    <nav class="asaide__container">
       <ul>
         ${categories.map(listCategories).join("")}
         <li class="js-category list-categories  ${
