@@ -1,5 +1,6 @@
 import { getItFromLocalStorage } from "../utils.js";
 
+// Este bloque de código retorna el bloque HTML del card del producto que se mostrará en pantalla.
 export function productCards(product) {
   const ProductInTheCart = getItFromLocalStorage("selected products(ID's)");
   return `

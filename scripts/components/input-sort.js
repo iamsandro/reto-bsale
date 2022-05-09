@@ -1,5 +1,6 @@
 import { getItFromLocalStorage } from "../utils.js";
 
+// Este bloque se encarga en enlistar, para el tag select, todas las opciones para ordenar.
 function options(type) {
   const optionSelected = getItFromLocalStorage("sort selected");
   const categorySelected = getItFromLocalStorage("current category");
@@ -12,6 +13,7 @@ function options(type) {
   `;
 }
 
+// Este bloque devuelve el tag select, con las opciones para ordenar los productos.
 export function selecTheOrder() {
   const clasificationTypes = getItFromLocalStorage("clasification types");
   return `

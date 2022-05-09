@@ -1,7 +1,8 @@
 import DOMHandler from "../dom-handler.js";
-import { showProduct } from "../services/products-service.js";
 import { getItFromLocalStorage, saveToLocalStorage } from "../utils.js";
 
+// Este evento es para agregar un producto a la cesta, cuando se da click sobre el ícono del carrito
+// que está en el card de los productos se extrae la ID  de dicho producto y se guarda.
 export function addEventAddProductToCart() {
   const iconsCart = document.querySelectorAll(".js-cart");
 
@@ -20,6 +21,8 @@ export function addEventAddProductToCart() {
   });
 }
 
+// Este evento es para quitar un producto del carrito o la cesta de compra, se quita el ID, y se recalcula
+// el monto a pagar del usuario.
 export function addEventDeleteProductToCart() {
   const iconsCart = document.querySelectorAll(".js-cart");
   let cartProducts = getItFromLocalStorage("Products to seil");

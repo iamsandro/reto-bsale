@@ -1,4 +1,4 @@
-// import { appKey } from "./config.js";
+// Estas funciones nos sirver para guardar datos en el local storage y luego obtenerlas de nuevo.
 let appKey = "bsale_test";
 
 export function getItFromLocalStorage(key) {

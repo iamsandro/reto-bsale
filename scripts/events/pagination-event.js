@@ -1,7 +1,9 @@
 import DOMHandler from "../dom-handler.js";
 import { saveToLocalStorage } from "../utils.js";
 
-export function addEventPage() {
+// Este evento es para cambiar de número de página, cuando se da click, sobre alguno de los botones(números)
+// pasamos a dicho número de página.
+export function addEventChangeNumberPage() {
   const numberPages = document.querySelectorAll(".js-page");
   numberPages?.forEach((page) => {
     page.addEventListener("click", (event) => {

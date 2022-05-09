@@ -6,6 +6,8 @@ import {
 } from "../services/products-service.js";
 import { getItFromLocalStorage, saveToLocalStorage } from "../utils.js";
 
+// Este evento es para ordenar los productos, este mismo evento sirve para ordenar,
+// todos los productos, por categoría, o los productos obtenidos por una busqueda.
 export function addEventSelectSort() {
   const input = document.querySelector(".js-sort");
   const searching = getItFromLocalStorage("product to search");

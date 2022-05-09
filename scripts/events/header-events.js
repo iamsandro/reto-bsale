@@ -7,6 +7,8 @@ import { getItFromLocalStorage, saveToLocalStorage } from "../utils.js";
 import CartPage from "../pages/sale-page.js";
 import ProductsPage from "../pages/products-page.js";
 
+// Este evento es para cuando el usuario escriba algo en el campo search(header), se pueda realizar el
+// fech a la api, para devolver todos los productos que coincidan con lo ingresado.
 export function addEventOnSearch() {
   const inputSearch = document.querySelector(".js-search");
   inputSearch?.addEventListener("change", async (event) => {
@@ -23,6 +25,8 @@ export function addEventOnSearch() {
   });
 }
 
+// Este evento es para que cuando el usuario de click sobre el ícono del carrito,
+// pasemos a la página de venta(sale page)
 export function addEventGoToCartPage() {
   const iconCart = document.querySelector(".js-cart-page");
   const root = document.querySelector("#root");
@@ -52,6 +56,7 @@ export function addEventGoToCartPage() {
   });
 }
 
+// Este evento es para regresar a la página de productos, cuando estamos en la página de ventas(sale page)
 export function addEventBackToProductPage() {
   const root = document.querySelector("#root");
   const iconBack = document.querySelector(".js-back");

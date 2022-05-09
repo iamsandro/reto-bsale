@@ -1,3 +1,4 @@
+// Esta página se mostrará cuando no se pueda tener conección con la base de datos, ya sea cualquier motivo.
 function render() {
   return `
     <div class="message-error">

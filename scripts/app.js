@@ -12,12 +12,17 @@ let module;
 async function App() {
   const root = document.querySelector("#root");
   try {
+    // se verifica si exites datos acerca de los productos en el local storage
+    // si no lo hay tendremos un null. Esto es útil, cuando se haga refresh a la página
+    // no se piedan los datos de navegación.
     const categorySelected = getItFromLocalStorage("current category");
     const productsInLocalStorage = getItFromLocalStorage("products");
     const categoriesInLocalStorage = getItFromLocalStorage("categories");
     const clasificationTypesInLocalStorage = getItFromLocalStorage(
       "clasification types"
     );
+
+    // Se realizan peticiones a la api solo si resulatado del localstorage es null
     const products =
       categorySelected == null ? await indexProducts() : productsInLocalStorage;
 
@@ -37,12 +42,15 @@ async function App() {
       saveToLocalStorage("current category", null);
     }
 
+    //por defecto se nos redirige a la página de productos.
+    //incluido el refresh, volveremos a la ágina de productos.
     module = ProductsPage;
   } catch (error) {
     console.log(error);
     module = ErrorPage;
   }
 
+  //si no hubo ningún error, cargaremos lá pagína en el index.html.
   return DOMHandler.load(module(), root);
 }
 

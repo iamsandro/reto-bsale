@@ -1,7 +1,6 @@
 import { getItFromLocalStorage } from "../utils.js";
 
-// const categorySelected = getItFromLocalStorage("current category");
-
+// Esta función recibe una categoría(objeto) y la enlista.
 function listCategories(category) {
   const categorySelected = getItFromLocalStorage("current category");
   return `
@@ -12,6 +11,7 @@ function listCategories(category) {
   `;
 }
 
+// Esta función  se encarga de mapear las categoría existentes y retorna el bloque HTML para ser renderisado.
 export function aside() {
   const categorySelected = getItFromLocalStorage("current category");
   let categories = getItFromLocalStorage("categories");

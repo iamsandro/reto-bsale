@@ -1,5 +1,6 @@
 import { getItFromLocalStorage } from "../utils.js";
 
+// Este bloque recibe un producto(objeto) y extrae el precion y el nombre, que sirven para el card sale(descipción de la venta)
 function product(product) {
   return `
     <div class="card-full-item">
@@ -9,6 +10,7 @@ function product(product) {
   `;
 }
 
+// Este bloque de código retorna el bloque HTML para mostra el card sale o card para la descripción de la venta.
 export function saleCard() {
   const [list, total, discount] = getItFromLocalStorage("sale description");
   return `

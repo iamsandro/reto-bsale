@@ -1,3 +1,4 @@
+//Esta página es la principal, aquí se nos muestra los productos disponibles y los filtros de los mismos.
 import { getItFromLocalStorage } from "../utils.js";
 import { aside } from "../components/aside-categories.js";
 import { searchTool } from "../components/input-search.js";
@@ -10,7 +11,7 @@ import {
 import { addEventAddProductToCart } from "../events/product-events.js";
 import { selecTheOrder } from "../components/input-sort.js";
 import { addEventSelectSort } from "../events/sort-events.js";
-import { addEventPage } from "../events/page-event.js";
+import { addEventChangeNumberPage } from "../events/pagination-event.js";
 import { pagination } from "../components/pagination.js";
 
 function render() {
@@ -53,7 +54,7 @@ function ProductsPage() {
       addEventAddProductToCart();
       addEventSelectSort();
       addEventGoToCartPage();
-      addEventPage();
+      addEventChangeNumberPage();
     },
   };
 }

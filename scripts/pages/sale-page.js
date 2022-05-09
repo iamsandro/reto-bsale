@@ -1,3 +1,5 @@
+// Esta página es para la venta, ahí se muestran los productos del carrito y la descripcio del monto
+// a pagar.
 import { productCards } from "../components/product-cards.js";
 import { addEventBackToProductPage } from "../events/header-events.js";
 import { getItFromLocalStorage } from "../utils.js";
