@@ -33,25 +33,26 @@ export function addEventGoToCartPage() {
 
   iconCart?.addEventListener("click", async () => {
     const productIds = getItFromLocalStorage("selected products(ID's)");
+    if (productIds.length > 0) {
+      let products = (await searchMyProducts(productIds))[0];
 
-    let products = (await searchMyProducts(productIds))[0];
+      let totalToPay = 0;
+      let discount = 0;
+      const productDescription = [
+        ...products.map((product) => {
+          totalToPay += product["price"];
+          discount += product["saving"];
+          return { name: product["name"], price: product["price"] };
+        }),
+      ];
 
-    let totalToPay = 0;
-    let discount = 0;
-    const productDescription = [
-      ...products.map((product) => {
-        totalToPay += product["price"];
-        discount += product["saving"];
-        return { name: product["name"], price: product["price"] };
-      }),
-    ];
-
-    saveToLocalStorage("sale description", [
-      productDescription,
-      totalToPay,
-      discount,
-    ]);
-    saveToLocalStorage("Products to seil", products);
+      saveToLocalStorage("sale description", [
+        productDescription,
+        totalToPay,
+        discount,
+      ]);
+      saveToLocalStorage("Products to seil", products);
+    }
     DOMHandler.load(CartPage(), root);
   });
 }
