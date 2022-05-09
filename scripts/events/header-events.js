@@ -30,7 +30,7 @@ export function addEventGoToCartPage() {
   iconCart?.addEventListener("click", async () => {
     const productIds = getItFromLocalStorage("selected products(ID's)");
 
-    let products = await searchMyProducts(productIds);
+    let products = (await searchMyProducts(productIds))[0];
 
     let totalToPay = 0;
     let discount = 0;
