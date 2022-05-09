@@ -2,6 +2,19 @@
 
 Construción de una tienda online que despliegue productos agrupados por la categoría a la que pertenecen. Esta aplicación es la parte frontend que consumira la api bsale-api.
 
+## ¿Cómo levanta la aplicación?
+
+Esa aplicación usa api bsale api (https://github.com/rubencito9294/bsale-api), la api ya está deployada en heruku, lo único que se debe hacer es clonar el repositorio bsale-app, ir a index.html, dar click derecho y click en la opción `open with live server`).
+
+Si se quiere usar el api directamente desde su repositorio, entonces se debe hacer lo siguiente:
+
+1. Clonar ambos repositorios, bsale-app y bsale-api
+2. En bsale-app, ir a `scripts/config.js`, comentar la linea 1, y descomentar la linea 2, la cuál ejecutará un servidor en el localhost de tu computadora.
+3. luego abrir el bsale-api, ir a la terminal y ejecutar el comando `rails server` o su shortcut `rs`
+4. luego abrir el index.html con live server.
+
+Nota: Live server es una extensión que se puede descargar en visual studio code, de otra forma más simple sería ir al explorador de archivos, buscar el archivo index.html y dar doble click.
+
 ## Estructura
 
 1. **Assets** : Esta carpeta almacena imágenes y/o íconos que se usan en el proyecto.
