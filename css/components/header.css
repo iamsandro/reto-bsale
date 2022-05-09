@@ -2,21 +2,19 @@
 .header {
   padding: 1.5rem 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 4rem;
   background-color: #363a40;
   width: 100%;
   position: fixed;
   top: 0;
+  margin-bottom: 0;
 }
 
 .app-name,
 .name-page {
   color: white;
   text-transform: uppercase;
-}
-@media screen and (max-width: 768px) {
 }
 
 .icon-cart,
@@ -37,4 +35,98 @@
   justify-content: center;
   align-items: center;
   color: white;
+}
+
+.sub-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  width: 180 px;
+  background-color: white;
+  outline: solid 2px white;
+  margin-top: 0;
+  position: fixed;
+  margin-left: 5px;
+}
+
+.pagination__container {
+  display: flex;
+  max-width: 380px;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.number__pages {
+  padding: 2px;
+  background: black;
+  color: white;
+  border-radius: 50%;
+  height: 1rem;
+  width: 1rem;
+  display: block;
+  text-align: center;
+  font-size: 0.5rem;
+  cursor: pointer;
+}
+
+.current-page {
+  background-color: green;
+}
+
+@media (min-width: 600px) {
+  .sub-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 220px;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: white;
+    outline: solid 10px white;
+    margin-top: 0;
+    position: fixed;
+  }
+
+  .pagination__container {
+    max-width: 480px;
+  }
+
+  .number__pages {
+    padding: 4px;
+    background: black;
+    color: white;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    display: block;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+  }
+  .current-page {
+    background-color: green;
+  }
+}
+
+@media (min-width: 720px) {
+  .sub-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    background-color: white;
+    outline: solid 10px white;
+    margin-top: 0;
+    position: fixed;
+  }
 }

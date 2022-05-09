@@ -8,6 +8,10 @@ export async function showProduct(productId) {
   return await apiFetch(`products/${productId}`);
 }
 
+export async function searchMyProducts(arrayIds) {
+  return await apiFetch(`array/${arrayIds}`);
+}
+
 export async function showCategories() {
   return await apiFetch(`categories`);
 }

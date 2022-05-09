@@ -1,7 +1,7 @@
 import { getItFromLocalStorage } from "../utils.js";
 
 export function productCards(product) {
-  const ProductInTheCart = getItFromLocalStorage("IDs of cart's products");
+  const ProductInTheCart = getItFromLocalStorage("selected products(ID's)");
   return `
     <div class="card">
       <image 
@@ -18,11 +18,10 @@ export function productCards(product) {
           <p class="card__price ${
             product["discount"] > 0 ? "crossed-out" : ""
           }">$ ${product["price"] / 100}</p>
-          
           ${
             product["discount"] > 0
               ? `<p class="card__discount">Get it for:<br>$ ${
-                  (product["price"] * (100 - product["discount"])) / 10000
+                  product["new_price"] / 100
                 }</p>`
               : ""
           }

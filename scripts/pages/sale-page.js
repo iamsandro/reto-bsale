@@ -5,6 +5,11 @@ import { saleCard } from "../components/sale-card.js";
 import { addEventDeleteProductToCart } from "../events/product-events.js";
 import { addEventButtonToPay } from "../events/sale-event.js";
 import { message } from "../components/message-sale-page.js";
+import { showProduct } from "../services/products-service.js";
+
+async function getProducts(productId) {
+  return showProduct(productId);
+}
 
 function render() {
   const productOfCart = getItFromLocalStorage("Products to seil");
@@ -22,15 +27,15 @@ function render() {
         saleCompleted
           ? message("Your purchase was successful, click on continue shopping")
           : `<div class="container">
+          ${
+            productOfCart[0]
+              ? `
               ${saleCard()}
-                ${
-                  productOfCart[0]
-                    ? `
-                  <div class="cards__container">
-                    ${productOfCart.map(productCards).join("")}
-                  </div>`
-                    : message("you don't have any products in your cart yet")
-                }
+              <div class="cards__container">
+                ${productOfCart.map(productCards).join("")}
+              </div>`
+              : message("you don't have any products in your cart yet")
+          }
             </div>`
       }
     </div>

@@ -2,8 +2,10 @@ import { getItFromLocalStorage } from "../utils.js";
 
 function product(product) {
   return `
-    <p class="card-sale__name">- ${product["name"]}</p>
-    <p class="card-sale__price">$ ${product["price"] / 100}</li>
+    <div class="card-full-item">
+      <p class="card-sale__name">- ${product["name"]}</p>
+      <p class="card-sale__price">$ ${product["price"] / 100}</li>
+    </div>
   `;
 }
 
@@ -12,9 +14,7 @@ export function saleCard() {
   return `
     <div class="card-sale">
       <p class="card-sale__title">sale description</p>
-      ${
-        list[0]
-          ? `
+
         <div class="card-sale__lists">
           ${list.map(product).join("")}
         </div>
@@ -24,17 +24,13 @@ export function saleCard() {
             ? `<p class="card-sale__disscount">Discount: - $ ${
                 discount / 100
               }</p>
-              <p class="card-sale__total">New Total: $ ${
+              <p class="card-sale__total center">New Total: $ ${
                 (total - discount) / 100
               }</p>
             `
             : ""
         }
         <button class="js-button-to-pay button">Pay now</button>
-        `
-          : "<p>Empty list</p>"
-      }
-      
     </div>
   `;
 }

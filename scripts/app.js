@@ -12,15 +12,14 @@ let module;
 async function App() {
   const root = document.querySelector("#root");
   try {
-    const categorySelected = getItFromLocalStorage("category selected");
+    const categorySelected = getItFromLocalStorage("current category");
     const productsInLocalStorage = getItFromLocalStorage("products");
     const categoriesInLocalStorage = getItFromLocalStorage("categories");
     const clasificationTypesInLocalStorage = getItFromLocalStorage(
       "clasification types"
     );
-    const products = productsInLocalStorage
-      ? productsInLocalStorage
-      : await indexProducts();
+    const products =
+      categorySelected == null ? await indexProducts() : productsInLocalStorage;
 
     const categories = categoriesInLocalStorage
       ? categoriesInLocalStorage
@@ -31,12 +30,11 @@ async function App() {
       : await clasificationTypes();
 
     saveToLocalStorage("products", products);
-    saveToLocalStorage("All products", products);
     saveToLocalStorage("categories", categories);
     saveToLocalStorage("clasification types", clasification);
     saveToLocalStorage("sale completed", false);
     if (!categorySelected) {
-      saveToLocalStorage("category selected", "allProduct");
+      saveToLocalStorage("current category", null);
     }
 
     module = ProductsPage;

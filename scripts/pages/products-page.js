@@ -8,17 +8,28 @@ import {
   addEventOnSearch,
 } from "../events/header-events.js";
 import { addEventAddProductToCart } from "../events/product-events.js";
-import { inputSelect } from "../components/input-sort.js";
+import { selecTheOrder } from "../components/input-sort.js";
 import { addEventSelectSort } from "../events/sort-events.js";
+import { addEventPage } from "../events/page-event.js";
+import { pagination } from "../components/pagination.js";
 
 function render() {
-  const products = getItFromLocalStorage("products");
+  const currentNumberPage = getItFromLocalStorage("current number page") || 1;
+  const allProducts = getItFromLocalStorage("products");
+  const quantityPages = allProducts.length;
+  const products = allProducts[currentNumberPage - 1];
+
   return `
   ${searchTool()}
+  <div class="sub-header">
+    ${products[0] ? selecTheOrder() : ""}
+    <div class="pagination__container">
+      ${pagination(currentNumberPage, quantityPages)}
+    </div>
+  </div>
   <div class="container">
     ${aside()}
     <div class="div__main">
-      ${products[0] ? inputSelect() : ""}
       <div class="cards__container">
         ${
           products.length > 0
@@ -42,6 +53,7 @@ function ProductsPage() {
       addEventAddProductToCart();
       addEventSelectSort();
       addEventGoToCartPage();
+      addEventPage();
     },
   };
 }

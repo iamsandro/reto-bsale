@@ -1,19 +1,22 @@
 import DOMHandler from "../dom-handler.js";
-import { searchProducts } from "../services/products-service.js";
+import {
+  searchMyProducts,
+  searchProducts,
+} from "../services/products-service.js";
 import { getItFromLocalStorage, saveToLocalStorage } from "../utils.js";
 import CartPage from "../pages/sale-page.js";
 import ProductsPage from "../pages/products-page.js";
 
 export function addEventOnSearch() {
   const inputSearch = document.querySelector(".js-search");
-  inputSearch.addEventListener("change", async (event) => {
+  inputSearch?.addEventListener("change", async (event) => {
     const productToSearch = event.target.value;
 
     const products = await searchProducts(productToSearch);
 
     saveToLocalStorage("product to search", productToSearch);
     saveToLocalStorage("products", products);
-    saveToLocalStorage("category selected", null);
+    saveToLocalStorage("current category", null);
     saveToLocalStorage("sort selected", null);
 
     DOMHandler.reload();
@@ -24,20 +27,17 @@ export function addEventGoToCartPage() {
   const iconCart = document.querySelector(".js-cart-page");
   const root = document.querySelector("#root");
 
-  iconCart.addEventListener("click", () => {
-    const productIds = getItFromLocalStorage("IDs of cart's products");
-    let products = getItFromLocalStorage("All products");
+  iconCart?.addEventListener("click", async () => {
+    const productIds = getItFromLocalStorage("selected products(ID's)");
 
-    let productsToSeil = products.filter((product) => {
-      return productIds?.includes(product["id"]);
-    });
+    let products = await searchMyProducts(productIds);
 
     let totalToPay = 0;
     let discount = 0;
     const productDescription = [
-      ...productsToSeil.map((product) => {
+      ...products.map((product) => {
         totalToPay += product["price"];
-        discount += product["discount"];
+        discount += product["saving"];
         return { name: product["name"], price: product["price"] };
       }),
     ];
@@ -47,7 +47,7 @@ export function addEventGoToCartPage() {
       totalToPay,
       discount,
     ]);
-    saveToLocalStorage("Products to seil", productsToSeil);
+    saveToLocalStorage("Products to seil", products);
     DOMHandler.load(CartPage(), root);
   });
 }
@@ -58,7 +58,7 @@ export function addEventBackToProductPage() {
 
   saveToLocalStorage("sale completed", false);
 
-  iconBack.addEventListener("click", () => {
+  iconBack?.addEventListener("click", () => {
     DOMHandler.load(ProductsPage(), root);
   });
 }

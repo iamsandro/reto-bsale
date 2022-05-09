@@ -3,11 +3,43 @@
   background-color: #4a4e53;
   outline: none;
   color: white;
+  max-width: 136px;
 }
 
 .input-selected {
   text-transform: capitalize;
-  margin: 1rem 1rem;
-  margin-right: 300px;
-  position: fixed;
+  margin: 0.2rem 0.2rem;
+  /* left: 220px; */
+  outline: #363a40 1px solid;
+  border: none;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.input-selected:hover {
+  background-color: var(--gray-300);
+  color: white;
+  outline: none;
+  border: none;
+}
+
+@media (min-width: 600px) {
+  .input-selected {
+    text-transform: capitalize;
+    margin: 1rem 1rem;
+    /* left: 220px; */
+    outline: #363a40 1px solid;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  .input-selected:hover {
+    background-color: var(--gray-300);
+    color: white;
+    outline: none;
+    border: none;
+  }
 }

@@ -6,14 +6,14 @@ export function addEventAddProductToCart() {
   const iconsCart = document.querySelectorAll(".js-cart");
 
   iconsCart.forEach((iconCart) => {
-    iconCart.addEventListener("click", async (event) => {
+    iconCart?.addEventListener("click", async (event) => {
       const productId = event.target.dataset.id;
-      let products = getItFromLocalStorage("IDs of cart's products") || [];
+      let products = getItFromLocalStorage("selected products(ID's)") || [];
       products.includes(+productId)
         ? products.splice(products.indexOf(+productId), 1)
         : products.push(+productId);
 
-      saveToLocalStorage("IDs of cart's products", products);
+      saveToLocalStorage("selected products(ID's)", products);
 
       DOMHandler.reload();
     });
@@ -23,10 +23,10 @@ export function addEventAddProductToCart() {
 export function addEventDeleteProductToCart() {
   const iconsCart = document.querySelectorAll(".js-cart");
   let cartProducts = getItFromLocalStorage("Products to seil");
-  let indexProducts = getItFromLocalStorage("IDs of cart's products");
+  let indexProducts = getItFromLocalStorage("selected products(ID's)");
 
   iconsCart.forEach((iconCart) => {
-    iconCart.addEventListener("click", async (event) => {
+    iconCart?.addEventListener("click", async (event) => {
       const productId = event.target.dataset.id;
       cartProducts = cartProducts.filter((product) => {
         return product["id"] != productId;
@@ -37,9 +37,9 @@ export function addEventDeleteProductToCart() {
 
       const productDescription = [
         ...cartProducts.map((product) => {
-          totalToPay += product["price"];
-          disscount += product["discount"];
-          return { name: product["name"], price: product["price"] };
+          totalToPay += product["new_price"];
+          disscount += product["saving"] / 100;
+          return { name: product["name"], price: product["new_price"] };
         }),
       ];
 
@@ -51,7 +51,7 @@ export function addEventDeleteProductToCart() {
 
       indexProducts.splice(indexProducts.indexOf(productId), 1);
 
-      saveToLocalStorage("IDs of cart's products", indexProducts);
+      saveToLocalStorage("selected products(ID's)", indexProducts);
       saveToLocalStorage("Products to seil", cartProducts);
 
       DOMHandler.reload();

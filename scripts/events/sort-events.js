@@ -17,7 +17,7 @@ export function addEventSelectSort() {
 
     if (searching == null) {
       products =
-        categoryId && categoryId !== "allProduct"
+        categoryId && categoryId !== "null"
           ? await sortProductsByCategory(categoryId, sortBy, order)
           : await sortAllProducts(sortBy, order);
       saveToLocalStorage("products", products);

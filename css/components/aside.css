@@ -1,14 +1,18 @@
 .asaide__container {
   position: fixed;
-  width: 220px;
+  margin-top: 2.8rem;
+  width: 180px;
 }
 
 .list-categories {
   text-transform: uppercase;
   cursor: pointer;
-  /* padding-bottom: 1rem; */
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
+  padding: 0.2rem 0.2rem;
+  padding-right: 0;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  max-width: 120px;
+  text-align: left;
 }
 
 .list-categories:hover {
@@ -18,4 +22,34 @@
 .selected {
   background-color: gray;
   color: white;
+}
+
+@media (min-width: 600px) {
+  .asaide__container {
+    max-width: 250px;
+    margin-top: 0.5rem;
+    padding-top: 0;
+  }
+  .list-categories {
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    max-width: 250px;
+  }
+
+  .list-categories:hover {
+    background-color: var(--gray-200);
+  }
+
+  .selected {
+    background-color: gray;
+    color: white;
+  }
+}
+
+@media (min-width: 720px) {
+  .asaide__container {
+    max-width: 250px;
+    margin-top: 2rem;
+  }
 }

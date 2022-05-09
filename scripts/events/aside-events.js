@@ -8,15 +8,17 @@ import { saveToLocalStorage } from "../utils.js";
 export function addEventChangeCategory() {
   const categoriesList = document.querySelectorAll(".js-category");
   categoriesList.forEach((category) => {
-    category.addEventListener("click", async (event) => {
+    category?.addEventListener("click", async (event) => {
       const categoryId = event.target.dataset.id;
+
       const products =
-        categoryId !== "allProduct"
+        categoryId !== null && categoryId !== "null"
           ? await showProductsByCategory(categoryId)
           : await indexProducts();
 
       saveToLocalStorage("products", products);
-      saveToLocalStorage("category selected", categoryId);
+      saveToLocalStorage("current category", categoryId);
+      saveToLocalStorage("current number page", 1);
       saveToLocalStorage("product to search", null);
       saveToLocalStorage("sort selected", null);
 

@@ -2,17 +2,17 @@ import { getItFromLocalStorage } from "../utils.js";
 
 function options(type) {
   const optionSelected = getItFromLocalStorage("sort selected");
-  const categorySelected = getItFromLocalStorage("category selected");
+  const categorySelected = getItFromLocalStorage("current category");
   return `
   <option
+  class="option-sort"
   value="${categorySelected ? type + " " + categorySelected : type}" 
   ${optionSelected?.includes(type) ? "selected" : ""}
   >${type}</option>
   `;
 }
 
-export function inputSelect() {
-  const optionSelected = getItFromLocalStorage("order selected");
+export function selecTheOrder() {
   const clasificationTypes = getItFromLocalStorage("clasification types");
   return `
       <select name="sort" class="js-sort input-selected">
